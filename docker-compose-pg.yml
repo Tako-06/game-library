@@ -1,0 +1,12 @@
+services:
+  db:
+    image: postgres:17
+    container_name: game-library-postgres-local
+    environment:
+      POSTGRES_DB: ${DB_DATABASE}
+      POSTGRES_USER: ${DB_USERNAME}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+    ports:
+     - ${DB_PORT}:5432
+    volumes:
+      - ./data:/var/lib/postgresql/data
