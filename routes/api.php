@@ -15,3 +15,8 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::put('/user/update', [UserController::class, 'update']);
     Route::put('/user/reset-password', [UserController::class, 'updatePassword']);
 });
+
+Route::get('/games', [GameController::class, 'showAll'])->middleware('auth:sanctum');
+Route::get('/games/{game}', [GameController::class, 'showOne']);
+Route::put('/games/{game}', [GameController::class, 'update'])->middleware('auth:sanctum');
+Route::delete('/games/{game}', [GameController::class, 'destroy'])->middleware('auth:sanctum');
