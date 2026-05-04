@@ -40,16 +40,27 @@ class GameController extends Controller
         return response()->json(['games' => $games], 200);
     }
 
-    public function showOne(Game $game)
+    public function showOne($id)
     {
-        return response()->json(['game' => $game]);
+        $game = Game::find($id);
+
+        if (!$game) {
+            return response()->json(['error' => 'Game not found.'], 404);
+        }
+
+        return response()->json(['game' => $game], 200);
     }
 
-    public function update(Request $request, Game $game)
+    public function update(Request $request, $id)
     {
+        $game = Game::find($id);
 
         if (!auth('sanctum')->user()->is_admin) {
             return response()->json(['error' => 'Unauthorized. Admin Only!'], 403);
+        }
+
+        if (!$game) {
+            return response()->json(['error' => 'Game not found.'], 404);
         }
 
         $validateGame = $request->validate([
@@ -67,11 +78,17 @@ class GameController extends Controller
         unset($validateGame['image']);
         $game->update($validateGame);
 
-        return response()->json(['game' => $game], 201);
+        return response()->json(['game' => $game], 200);
     }
 
-    public function destroy(Game $game)
+    public function destroy($id)
     {
+        $game = Game::find($id);
+
+        if (!$game) {
+            return response()->json(['error' => 'Game not found.'], 404);
+        }
+
         // Check if they are admin
         if (!auth('sanctum')->user()->is_admin) {
             return response()->json(['error' => 'Unauthorized. Admin Only!'], 403);
@@ -80,6 +97,6 @@ class GameController extends Controller
         Storage::disk('public')->delete($game->image_path);
         $game->delete();
 
-        return response()->json(['message' => 'Game deleted successfully.']);
+        return response()->json(['message' => 'Game deleted successfully.'], 200);
     }
 }

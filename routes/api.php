@@ -17,6 +17,6 @@ Route::middleware('auth:sanctum')->group(function () {
 });
 
 Route::get('/games', [GameController::class, 'showAll'])->middleware('auth:sanctum');
-Route::get('/games/{game}', [GameController::class, 'showOne']);
+Route::get('/games/{game}', [GameController::class, 'showOne'])->middleware('auth:sanctum');
 Route::put('/games/{game}', [GameController::class, 'update'])->middleware('auth:sanctum');
 Route::delete('/games/{game}', [GameController::class, 'destroy'])->middleware('auth:sanctum');
