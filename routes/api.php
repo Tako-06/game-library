@@ -9,14 +9,16 @@ Route::post('/signup', [UserController::class, 'createUser']);
 Route::post('/login', [UserController::class, 'login']);
 
 Route::middleware('auth:sanctum')->group(function () {
-    Route::post('/categories', [CategoryController::class, 'create']);
-    Route::post('/games', [GameController::class, 'create']);
-
+    Route::get('/user', [UserController::class, 'getUser']);
     Route::put('/user/update', [UserController::class, 'update']);
     Route::put('/user/reset-password', [UserController::class, 'updatePassword']);
+
+    Route::post('/games', [GameController::class, 'create']);
+    Route::get('/games', [GameController::class, 'showAll']);
+    Route::get('/games/{game}', [GameController::class, 'showOne']);
+    Route::put('/games/{game}', [GameController::class, 'update']);
+    Route::delete('/games/{game}', [GameController::class, 'destroy']);
+
+    Route::post('/categories', [CategoryController::class, 'create']);
 });
 
-Route::get('/games', [GameController::class, 'showAll'])->middleware('auth:sanctum');
-Route::get('/games/{game}', [GameController::class, 'showOne'])->middleware('auth:sanctum');
-Route::put('/games/{game}', [GameController::class, 'update'])->middleware('auth:sanctum');
-Route::delete('/games/{game}', [GameController::class, 'destroy'])->middleware('auth:sanctum');

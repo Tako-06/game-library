@@ -76,4 +76,14 @@ class UserController extends Controller
 
         return response()->json(['message' => 'Password updated successfully!'], 200);
     }
+
+    public function getUser(Request $request) {
+        $user = $request->user();
+
+        if(!$user) {
+            return response()->json(['error' => 'User not found.'], 404);
+        }
+
+        return response()->json(['user' => $user], 200);
+    }
 }
