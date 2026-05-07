@@ -17,6 +17,6 @@ Route::put('/games/{game}', [GameController::class, 'update'])->middleware('auth
 Route::delete('/games/{game}', [GameController::class, 'destroy'])->middleware('auth:sanctum');
 
 Route::get('/categories', [CategoryController::class, 'showAll'])->middleware('auth:sanctum');
-Route::get('/categories/{id}', [CategoryController::class, 'showOne'])->middleware('auth:sanctum');
-Route::patch('/categories/{id}', [CategoryController::class, 'update'])->middleware('auth:sanctum');
-Route::delete('/categories/{id}', [CategoryController::class, 'delete'])->middleware('auth:sanctum');
+Route::get('/categories/{category}', [CategoryController::class, 'showOne'])->middleware('auth:sanctum');
+Route::patch('/categories/{category}', [CategoryController::class, 'update'])->middleware('auth:sanctum');
+Route::delete('/categories/{category}', [CategoryController::class, 'delete'])->middleware('auth:sanctum');
