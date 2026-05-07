@@ -41,6 +41,10 @@ class UserController extends Controller
     public function update(Request $request) {
         $user = $request->user();
 
+        if(!$user) {
+            return response()->json(['error' => 'User not found.'], 404);
+        }
+
         $validated = $request->validate([
             'username' => 'sometimes|unique:users,username,' . $user->id,
             'email' => 'sometimes|email|unique:users,email,' . $user->id,
@@ -53,6 +57,10 @@ class UserController extends Controller
 
     public function updatePassword(Request $request) {
         $user = $request->user();
+
+        if(!$user) {
+            return response()->json(['error' => 'User not found.'], 404);
+        }
 
         $validated = $request->validate([
             'current_password' => 'required',
