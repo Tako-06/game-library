@@ -9,9 +9,9 @@ Route::post('/signup', [UserController::class, 'createUser']);
 Route::post('/login', [UserController::class, 'login']);
 
 Route::middleware('auth:sanctum')->group(function () {
-    Route::get('/user', [UserController::class, 'getUser']);
-    Route::put('/user/update', [UserController::class, 'update']);
-    Route::put('/user/reset-password', [UserController::class, 'updatePassword']);
+    Route::get('/users/current-user', [UserController::class, 'getUser']);
+    Route::put('/users/update', [UserController::class, 'update']);
+    Route::put('/users/reset-password', [UserController::class, 'updatePassword']);
 
     Route::post('/games', [GameController::class, 'create']);
     Route::get('/games', [GameController::class, 'showAll']);
