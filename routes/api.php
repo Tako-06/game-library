@@ -20,5 +20,10 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::delete('/games/{game}', [GameController::class, 'destroy']);
 
     Route::post('/categories', [CategoryController::class, 'create']);
+    Route::get('/categories', [CategoryController::class, 'showAll']);
+    Route::get('/categories/{category}', [CategoryController::class, 'showOne']);
+    Route::patch('/categories/{category}', [CategoryController::class, 'update']);
+    Route::delete('/categories/{category}', [CategoryController::class, 'delete']);
 });
+
 
