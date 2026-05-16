@@ -3,6 +3,7 @@
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\GameController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\UserLibraryController;
 use Illuminate\Support\Facades\Route;
 
 Route::post('/signup', [UserController::class, 'createUser']);
@@ -24,6 +25,10 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/categories/{category}', [CategoryController::class, 'showOne']);
     Route::patch('/categories/{category}', [CategoryController::class, 'update']);
     Route::delete('/categories/{category}', [CategoryController::class, 'delete']);
+
+    Route::post('/user-libraries', [UserLibraryController::class, 'create']);
+    Route::delete('/user-libraries/{id}', [UserLibraryController::class, 'destroy']);
+    Route::get('/user-libraries/games', [UserLibraryController::class, 'showUserGames']);
 });
 
 
