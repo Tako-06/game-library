@@ -30,4 +30,14 @@ class User extends Authenticatable
             'is_admin' => 'bool',
         ];
     }
+
+    public function games()
+    {
+        return $this->belongsToMany(
+            Game::class,
+            'user_libraries',
+            'user_id',
+            'game_id'
+        );
+    }
 }
