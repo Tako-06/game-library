@@ -16,7 +16,7 @@ class AdminUserSeeder extends Seeder
             'username' => 'admin',
             'email' => 'admin@kanchnakkhorn.com',
             'password' => 'password',
-            'is_admin' => 'true',
+            'is_admin' => true,
         ]);
     }
 }

@@ -1,0 +1,15 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: game-library-api
+    restart: unless-stopped
+    working_dir: /var/www/html
+    ports:
+      - '8000:80'
+    env_file:
+      - .env
+    volumes:
+      - ./:/var/www/html
+      - ./images:/var/www/html/storage/app/public/games

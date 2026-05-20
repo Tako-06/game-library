@@ -3,3 +3,12 @@ start-local-db:
 
 seed-admin:
 	php artisan db:seed --class=AdminUserSeeder
+
+build-image:
+    docker compose build
+
+up:
+    docker compose up -d
+
+down:
+    docker compose down
