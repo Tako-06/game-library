@@ -13,3 +13,9 @@ services:
     volumes:
       - ./:/var/www/html
       - ./images:/var/www/html/storage/app/public/games
+    networks:
+      - tunnel-network
+
+networks:
+  tunnel-network:
+    external: true
