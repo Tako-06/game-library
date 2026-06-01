@@ -42,7 +42,7 @@ class GameController extends Controller
 
     public function showOne($id)
     {
-        $game = Game::find($id);
+        $game = Game::with('category')->find($id);
 
         if (!$game) {
             return response()->json(['error' => 'Game not found.'], 404);
